@@ -32,7 +32,7 @@ describe('Desafio transfers', () => {
 
             expect(resposta.body).to.have.property('to');
             expect(resposta.body.to).to.be.a('string');
-     
+    
             expect(resposta.body).to.have.property('value');
             expect(resposta.body.value).to.be.a('number');
 
@@ -49,7 +49,7 @@ describe('Desafio transfers', () => {
                 .post('/transfers')
                 .set('Content-Type', 'application/json')
                 .set('Authorization', `Bearer ${token}`)
-                .send(bodyTransfers)
+                .send(bodyTransfers);
 
             expect(resposta.status).to.equal(400);
             expect(resposta.body.error).to.equal('Transferência acima de R$ 5.000,00 só para favorecidos');
@@ -73,7 +73,7 @@ describe('Desafio transfers', () => {
 
             expect(resposta.body).to.have.property('to');
             expect(resposta.body.to).to.be.a('string');
-     
+    
             expect(resposta.body).to.have.property('value');
             expect(resposta.body.value).to.be.a('number');
 
@@ -82,6 +82,36 @@ describe('Desafio transfers', () => {
 
             //console.log(resposta.body)
         });*/
-
     });
+
+        
+    describe('GET /transfers', () => {
+         let token
+            
+        beforeEach(async () => {
+            token = await obterToken(postLogin)
+        })
+
+
+        it('Retorna lista con todas las transferencias realizadas', async () => {
+        
+                    const resposta = await request(process.env.BASE_URL_REST)
+                    .get('/transfers') 
+                    .set('Content-Type', 'application/json')
+                    .set('Authorization', `Bearer ${token}`);
+
+                    expect(resposta.status).to.equal(200);
+                    expect(resposta.body).to.be.an('array'); //valida que é uma lista array 
+                    expect(resposta.body.length).to.be.greaterThan(0); //Valida que a lista não está vazia (usa o contado length)
+                    //console.log('GET lista', resposta.body);
+              
+                    //Com o nome 'transferencia' verifica que cada item da lista tem a propriedade 'value'
+                    resposta.body.forEach((transferencia) => {
+                    expect(transferencia).to.have.property('value');
+                    expect(transferencia.value).to.be.a('number');
+                    });
+        });
+    });
+
 });
+
