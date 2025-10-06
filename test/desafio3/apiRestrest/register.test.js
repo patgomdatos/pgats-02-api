@@ -3,7 +3,6 @@ const { expect } = require('chai');
 const postRegister = require('./fixtures/postRegister.json');
 const { gerarUsuario } = require('./helpers/usuariosRandom');
 
-
 describe('Desafio Register', () => {
     describe('POST /users/register', () => {
         it('Valida que se permite ingresar um novo usuário com um favorecido e retorna 201', async () => {
