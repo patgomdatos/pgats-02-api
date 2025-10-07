@@ -1,3 +1,4 @@
+require('dotenv').config();
 const request = require('supertest');
 const { expect } = require('chai');
 const { obterToken } = require('./helpers/autenticacao')
