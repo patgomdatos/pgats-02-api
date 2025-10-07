@@ -12,14 +12,18 @@ const { expect } = require('chai');
             .set('Content-Type', 'application/json');
             
             expect(resposta.status).to.equal(200);
-            expect(resposta.body).to.be.an('array'); //valida que é uma lista array 
-            expect(resposta.body.length).to.be.greaterThan(0); //Valida que a lista não está vazia (usa o contado length)
+            //valida que é uma lista array 
+            expect(resposta.body).to.be.an('array'); 
+            //Valida que a lista não está vazia (usa o contado length)
+            expect(resposta.body.length).to.be.greaterThan(0); 
             //console.log('GET lista', resposta.body);
 
             //Com o nome 'usuario' verifica que cada item da lista tem a propriedade 'username'
             resposta.body.forEach((usuario) => {
             expect(usuario).to.have.property('username');
             expect(usuario.username).to.be.a('string');
+            expect(usuario.saldo).to.be.a('number');
+
             });
         });
     });

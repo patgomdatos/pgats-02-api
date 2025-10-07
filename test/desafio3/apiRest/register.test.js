@@ -1,7 +1,7 @@
 const request = require('supertest');
 const { expect } = require('chai');
 const postRegister = require('./fixtures/postRegister.json');
-const { gerarUsuario } = require('./helpers/usuariosRandom');
+const { gerarUsuario } = require('./helpers/usuariosRandom.js');
 
 describe('Desafio Register', () => {
     describe('POST /users/register', () => {

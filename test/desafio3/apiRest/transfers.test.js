@@ -19,7 +19,8 @@ describe('Desafio transfers', () => {
             .set('Content-Type', 'application/json')
             .send(novoUsuario);
 
-        novoUsername = novoUsuario.username; // guarda pra usar nos testes
+        // guarda pra usar nos testes
+        novoUsername = novoUsuario.username; 
         });
 
         beforeEach(async () => {
