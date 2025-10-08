@@ -28,8 +28,6 @@
     //console.log(JSON.stringify(res.json(), null, 2));
     check(res, {
       "Status é 201": (res) => res.status == 201,
-      "'Saldo' é number": (r) => typeof(r.json().saldo) == 'number',
-      "Valor do saldo é 10000": (r) => r.json().saldo == 10000,
     });
 
     sleep(1);

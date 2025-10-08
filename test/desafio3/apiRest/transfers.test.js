@@ -3,15 +3,15 @@ const { expect } = require('chai');
 const { obterToken } = require('./helpers/autenticacao');
 const postLogin = require('./fixtures/postLogin.json');
 const { gerarUsuario } = require('./helpers/usuariosRandom');
-
+const postTransferMaior5000Favorecido = require('./fixtures/postTransferMaior5000Favorecido.json');
 
 describe('Desafio transfers', () => {
     describe('POST /transfers', () => {
         let token;
         let novoUsername;
 
-        //Uso a função de gerarUsuarios para ter usuarios para gerar os casos em que os usuarios não são favorecidos (com outros usuarios já registrados)
-        //porque observei que a base de dados se apaga quando volto a conectar o sistema
+        //Uso a função de gerarUsuarios para ter usuarios para os casos em que os usuarios não são favorecidos (com novos usuarios registrados)
+        //porque observamos que a base de dados se apaga quando volto a conectar o servidor
         before(async () => {
         const novoUsuario = gerarUsuario();
         await request(process.env.BASE_URL_REST)
@@ -19,7 +19,7 @@ describe('Desafio transfers', () => {
             .set('Content-Type', 'application/json')
             .send(novoUsuario);
 
-        // guarda pra usar nos testes
+        // guarda para usar nos testes
         novoUsername = novoUsuario.username; 
         });
 
@@ -69,8 +69,9 @@ describe('Desafio transfers', () => {
         expect(resposta.body.error).to.equal('Transferência acima de R$ 5.000,00 só para favorecidos');
         });
 
-        //Está coemtado porque ao executar algumas vezes o saldo se termina pelo valor elevado.
-        /*
+ 
+        //GERANDO ERRO POR FALTA DE SALDO
+        
         it('Deve retornar sucesso com 201 quando o valor da transferencia para um favorecido for maior a R$ 5000,00', async () => {
         const bodyTransfers = { ...postTransferMaior5000Favorecido };
 
@@ -94,7 +95,7 @@ describe('Desafio transfers', () => {
         expect(resposta.body).to.have.property('date');
         expect(resposta.body.date).to.be.a('string');
         });
-        */
+        
     });
 
     describe('GET /transfers', () => {
