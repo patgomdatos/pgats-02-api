@@ -31,7 +31,7 @@ describe('Desafio Login', () => {
             //console.log('Resposta da API:', resposta.body);
             expect(resposta.status).to.equal(400);
             expect(resposta.body.error).to.equal('Usuário e senha obrigatórios');
-            //Neste caso a API não devolve os campos quando gera o error, por isso confirmo que não devolve os campos
+            //Neste caso a API não devolve os campos quando gera o error 400, por isso confirmamos que não devolve os campos
             expect(resposta.body).to.not.have.property('username');
             expect(resposta.body).to.not.have.property('favorecidos');
         })

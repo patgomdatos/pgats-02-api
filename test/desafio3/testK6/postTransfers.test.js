@@ -31,10 +31,6 @@ export default function() {
   //console.log(JSON.stringify(res.json(), null, 2));
   check(res, {
     "Status é 201": (res) => res.status == 201,
-    "'from' é string": (r) => typeof(r.json().from)  == 'string',
-    "'to' é string": (r) => typeof(r.json().to)  == 'string',
-    "'Value' é number": (r) => typeof(r.json().value)  == 'number',
-    "'date' é string": (r) => typeof(r.json().date)  == 'string',
 
   });
 

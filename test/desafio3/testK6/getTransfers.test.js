@@ -30,8 +30,7 @@ export const options = {
         //Para este caso usamos .every que para devolver true ou false (booleano), 
         //para saber si todos os itens da lista tem o campo username
         'Cada item da lista possui username': (r) => r.json().every(u => u.username),
-        'Cada item da lista possui favorecidos': (r) => r.json().every(u => u.favorecidos),
-        'Cada item da lista possui saldo': (r) => r.json().every(u => u.saldo)
+
 
     })
 

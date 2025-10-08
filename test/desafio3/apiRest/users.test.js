@@ -18,7 +18,8 @@ const { expect } = require('chai');
             expect(resposta.body.length).to.be.greaterThan(0); 
             //console.log('GET lista', resposta.body);
 
-            //Com o nome 'usuario' verifica que cada item da lista tem a propriedade 'username'
+            //Com o nome 'usuario' verifica que cada item da lista tem a propriedade 'username', 
+            //se o tipo é string e se o saldo é de tipo number 
             resposta.body.forEach((usuario) => {
             expect(usuario).to.have.property('username');
             expect(usuario.username).to.be.a('string');
