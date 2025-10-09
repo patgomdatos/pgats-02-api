@@ -120,5 +120,18 @@ describe('Desafio transfers', () => {
             expect(transferencia.value).to.be.a('number');
             });
         });
+
+         it('Retorna erro por falta de token', async () => {
+        const resposta = await request(process.env.BASE_URL_REST)
+            .get('/transfers')
+            .set('Content-Type', 'application/json')
+
+
+      expect(resposta.status).to.equal(401);
+
+      // A API retorna o message
+      expect(resposta.body.message || resposta.body.error).to.equal('Token não fornecido.');
+
+        });
     });
 });
