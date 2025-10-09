@@ -34,7 +34,6 @@ export default function() {
 
   let res = http.post(url, payload, params);
 
-  //console.log(JSON.stringify(res.json(), null, 2));
   check(res, {
     "Status é 201": (res) => res.status === 201,
 

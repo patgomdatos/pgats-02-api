@@ -26,7 +26,6 @@ import { pegarBaseURL } from './utils/variaveis.js'
 
     const res = http.get(url, params);
 
-    //console.log(JSON.stringify(res.json(), null, 2));
     check(res, {
         'Status é 200': (r) => r.status === 200,
          //Valida que a lista não está vazia 

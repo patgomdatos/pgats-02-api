@@ -9,13 +9,11 @@ describe('Desafio Register', () => {
 
             const novoUsuario = gerarUsuario();
 
-            //console.log('Usuário enviado teste usuario registrado 201:', novoUsuario);
             const resposta = await request(process.env.BASE_URL_REST)
                 .post('/users/register')
                 .set('Content-Type', 'application/json')
                 .send(novoUsuario)
 
-            //console.log('Resposta da API:', resposta.body);
             expect(resposta.status).to.equal(201);
             expect(resposta.body.saldo).to.be.a('number');
             expect(resposta.body.saldo).to.equal(10000);
@@ -24,7 +22,6 @@ describe('Desafio Register', () => {
         it('Valida que se não se permite ingresar usuarios duplicados e retorna 400', async () => {
             const bodyRegister = { ...postRegister }
 
-            //console.log('Usuário enviado teste error 400:', bodyRegister);
             const resposta = await request(process.env.BASE_URL_REST)
                 .post('/users/register')
                 .set('Content-Type', 'application/json')
