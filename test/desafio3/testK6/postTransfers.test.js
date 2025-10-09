@@ -4,8 +4,14 @@ import { obterToken } from './helpers/autenticacao.js';
 import { pegarBaseURL } from './utils/variaveis.js';
 const postTransfer = JSON.parse(open('./fixtures/postTransfer.json'));
 
+//Usado para testar error no rate parando o servidor
 export const options = {
-  iterations: 1
+
+  thresholds: {
+    http_req_duration: ['p(90)<3000', 'max<50000'],
+    http_req_failed: ['rate<0.01']
+  },
+  iterations: 20,
 };
 
 export default function() {
@@ -30,7 +36,7 @@ export default function() {
 
   //console.log(JSON.stringify(res.json(), null, 2));
   check(res, {
-    "Status é 201": (res) => res.status == 201,
+    "Status é 201": (res) => res.status === 201,
 
   });
 

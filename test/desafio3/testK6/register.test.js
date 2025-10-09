@@ -3,10 +3,19 @@
   import { pegarBaseURL } from './utils/variaveis.js';
   const { gerarUsuario } = require('./helpers/usuariosRandom.js');
 
+//Tipos de teste usando Stages: Breakpoint
+export const options = {
+    stages: [
+      { duration: '250s', target: 1000 },
+    ],
 
-  export const options = {
-    iterations: 1
-  };
+      //iterations: 1,
+      thresholds: {
+        http_req_duration: ['p(90)<3000', 'max<50000'],
+        http_req_failed: ['rate<0.01']
+      }
+    };
+  
 
   export default function() {
 
@@ -27,7 +36,7 @@
     
     //console.log(JSON.stringify(res.json(), null, 2));
     check(res, {
-      "Status é 201": (res) => res.status == 201,
+      "Status é 201": (res) => res.status === 201,
     });
 
     sleep(1);
