@@ -84,7 +84,7 @@ Pastas:
   
 Observação: 
 
-Na pasta helpers estam os arquivos:
+Na pasta helpers estão os arquivos:
  - `helpers/autenticacao` para realizar a autenticação de um usuario no endpoint de login
  - `helpers/usuariosRandom` para gerar usuarios random e permitir executar os testes que precisam de usuarios não favorecidos e para o teste em que se espera que o usuario não seja duplicado.
 
