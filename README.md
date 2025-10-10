@@ -76,6 +76,16 @@ Rode `npm run start-graphql` para executar a API do GraphQL e acesse a URL http:
 - O arquivo `app.js` pode ser importado em ferramentas de teste como Supertest.
 - Para testar a API GraphQL, importe `graphql/app.js` nos testes.
 
+## Testes do Desafio 3
+
+Pastas:
+- test > desafio3 > apiRest ((Testes API Rest)
+- test  > desafio3 > testK6 (Testes de Performance usando a ferramenta K6)
+  
+Observação: Na pasta helpers estam os arquivos:
+ - `helpers/autenticacao` para realizar a autenticação de um usuario no endpoint de login
+ - `helpers/usuariosRandom` para gerar usuarios random e permitir executar os testes que precisam de usuarios não favorecidos e para o teste em que se espera que o usuario não seja duplicado.
+
 ---
 
 Para dúvidas, consulte a documentação Swagger, GraphQL Playground ou o código-fonte.
